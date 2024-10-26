@@ -1,19 +1,24 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+const check = document.getElementById("check");
+const h1 = document.getElementById("h1");
+const nav = document.getElementById("nav");
+const links = document.querySelectorAll('nav ul li a');
+const body = document.getElementsByTagName("body")[0]; 
 
-// Form submission handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default form submission
-    const formMessage = document.getElementById('formMessage');
-    formMessage.textContent = 'Thank you for your message!';
-    formMessage.style.color = 'green';
-    this.reset(); // Reset form fields
-});
+const toggleTheme = () => {
+    let checkbox = check.querySelector('input');
+    if (checkbox.checked) {
+        body.style.backgroundColor = "black"; 
+        h1.style.color = "white"; 
+        body.style.color = "white"; 
+        nav.style.backgroundColor = "white";
+        links.forEach(link => link.style.color = "black");
+    } else {
+        body.style.backgroundColor = ""; 
+        body.style.color = ""; 
+        h1.style.color = "white"; 
+        nav.style.backgroundColor = "";
+        links.forEach(link => link.style.color = "");
+    }
+};
+
+check.addEventListener("click", toggleTheme);
